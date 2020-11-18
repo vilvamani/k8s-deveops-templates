@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sonatype-nexus-green-pvc
+spec:
+  storageClassName: csi-hostpath-sc
+  dataSource:
+    name: sonatype-nexus-blue-pvc
+    kind: PersistentVolumeClaim
+    apiGroup: ""
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 15Gi
+

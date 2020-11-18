@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sonatype-nexus-blue-pv
+spec:
+  storageClassName: csi-hostpath-sc
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 15Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/sonatype-nexus-blue"
+

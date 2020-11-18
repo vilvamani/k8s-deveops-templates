@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sonatype-nexus-green
+  labels:
+    app: sonatype-nexus-green
+    group: service
+spec:
+  replicas: 1
+  serviceName: sonatype-nexus-green
+  selector:
+    matchLabels:
+      app: sonatype-nexus-green
+  template:
+    metadata:
+      labels:
+        app: sonatype-nexus-green
+        group: service
+    spec:
+      securityContext:
+        runAsUser: 200
+        runAsGroup: 2000
+        fsGroup: 2000
+      containers:
+        - image: sonatype/nexus3:3.25.0
+          name: sonatype-nexus-green
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+              name: sonatype
+            - containerPort: 8123
+              protocol: TCP
+          volumeMounts:
+            - name: nexus-storage
+              mountPath: /nexus-data
+      volumes:
+        - name: nexus-storage
+          persistentVolumeClaim:
+            claimName: sonatype-nexus-green-pvc
+

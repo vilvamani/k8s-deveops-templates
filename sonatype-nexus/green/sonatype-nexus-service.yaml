@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonatype-nexus-green
+spec:
+  type: NodePort
+  ports:
+    - port: 8081
+      targetPort: 8081
+      nodePort: 30010
+      name: sonatype
+    - port: 8123
+      targetPort: 8123
+      nodePort: 30011
+      name: docker-rep
+  selector:
+    app: sonatype-nexus-green
+    group: service
+    statefulset.kubernetes.io/pod-name: sonatype-nexus-green-0
