@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jenkins-green-pv
+spec:
+  storageClassName: csi-hostpath-sc
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 4Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/jenkins-green"
+
