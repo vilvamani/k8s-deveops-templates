@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarqube-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: sonarqube-blue
+  template:
+    metadata:
+      name: sonarqube-blue
+      labels:
+        name: sonarqube-blue
+    spec:
+      containers:
+        - name: sonarqube-blue
+          image: sonarqube:7.9.1-community
+          env:
+            - name: SONARQUBE_JDBC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-pwd
+                  key: password
+            - name: SONARQUBE_JDBC_URL
+              value: jdbc:postgresql://postgres-blue:5432/sonar
+          ports:
+            - name: sonarqube-ui
+              containerPort: 9000
+          resources:
+            requests:
+              memory: 2000Mi
+            limits:
+              memory: 2000Mi
+      initContainers:
+        - name: sysctl
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          command: ['sysctl', '-w', 'vm.max_map_count=262144']
+          securityContext:
+            privileged: true
+

@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgres-blue
+  template:
+    metadata:
+      name: postgres-blue
+      labels:
+        name: postgres-blue
+    spec:
+      containers:
+        - image: postgres:12.1
+          name: postgres-blue
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-pwd
+                  key: password
+            - name: POSTGRES_USER
+              value: sonar
+          ports:
+            - containerPort: 5432
+              name: postgresport
+          volumeMounts:
+            # This name must match the volumes.name below.
+            - name: data-disk
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data-disk
+          persistentVolumeClaim:
+            claimName: postgres-blue-pvc
+            

@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-green
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgres-green
+  template:
+    metadata:
+      name: postgres-green
+      labels:
+        name: postgres-green
+    spec:
+      containers:
+        - image: postgres:12.1
+          name: postgres-green
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-pwd
+                  key: password
+            - name: POSTGRES_USER
+              value: sonar
+          ports:
+            - containerPort: 5432
+              name: postgresport
+          volumeMounts:
+            # This name must match the volumes.name below.
+            - name: data-disk
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data-disk
+          persistentVolumeClaim:
+            claimName: postgres-green-pvc
+
