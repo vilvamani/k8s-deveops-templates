@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-green
+  labels:
+    app: grafana-green
+spec:
+  type: NodePort
+  ports:
+  - port: 3000
+    nodePort: 30014
+    protocol: TCP
+  selector:
+    app: grafana-green

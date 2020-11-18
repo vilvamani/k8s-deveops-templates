@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-blue
+  labels:
+    app: grafana-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana-blue
+  template:
+    metadata:
+      labels:
+        app: grafana-blue
+    spec:
+      containers:
+      - image: grafana/grafana:5.4.3
+        name: grafana
+        ports:
+        - containerPort: 3000
+          name: http
+        volumeMounts:
+          - name: grafana-storage
+            mountPath: /var/lib/grafana
+      volumes:
+        - name: grafana-storage
+          persistentVolumeClaim:
+            claimName: grafana-blue-pvc
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        fsGroup: 472
+
