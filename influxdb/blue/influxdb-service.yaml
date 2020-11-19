@@ -18,4 +18,5 @@ spec:
       protocol: TCP
   selector:
     name: influxdb-blue
-
+status:
+  loadBalancer: {}
