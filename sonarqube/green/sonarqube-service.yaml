@@ -12,7 +12,6 @@ spec:
       protocol: TCP
       port: 9000
       targetPort: 9000
-      nodePort: 30006
   selector:
     name: sonarqube-green
 status:
