@@ -4,10 +4,11 @@ kind: StatefulSet
 metadata:
   name: influxdb-blue
   labels:
+    name: influxdb
     app: influxdb-blue
     task: monitoring
 spec:
-  replicas: 2
+  replicas: 1
   serviceName: influxdb-blue
   selector:
     matchLabels:
@@ -57,7 +58,7 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 45
       serviceAccountName: influxdb
-      serviceAccount: influxdb
+      securityContext: {}
       schedulerName: default-scheduler
       volumes:
         - name: config
