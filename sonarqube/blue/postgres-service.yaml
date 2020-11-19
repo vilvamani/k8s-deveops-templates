@@ -7,7 +7,11 @@ metadata:
     name: postgres-blue
 spec:
   ports:
-    - port: 5432
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
   selector:
     name: postgres-blue
-
+  type: ClusterIP
+status:
+  loadBalancer: {}

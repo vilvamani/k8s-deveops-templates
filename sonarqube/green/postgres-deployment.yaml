@@ -15,8 +15,13 @@ spec:
         name: postgres-green
     spec:
       containers:
-        - image: postgres:12.1
-          name: postgres-green
+        - name: postgres
+          image: postgres:12.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: postgresport
+              containerPort: 5432
+              protocol: TCP
           env:
             - name: POSTGRES_PASSWORD
               valueFrom:
@@ -25,15 +30,15 @@ spec:
                   key: password
             - name: POSTGRES_USER
               value: sonar
-          ports:
-            - containerPort: 5432
-              name: postgresport
+          resources: {}
           volumeMounts:
-            # This name must match the volumes.name below.
             - name: data-disk
               mountPath: /var/lib/postgresql/data
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      schedulerName: default-scheduler
       volumes:
         - name: data-disk
           persistentVolumeClaim:
             claimName: postgres-green-pvc
-

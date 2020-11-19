@@ -14,9 +14,20 @@ spec:
       labels:
         name: sonarqube-blue
     spec:
+      initContainers:
+        - name: sysctl
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          command: ['sysctl', '-w', 'vm.max_map_count=262144']
+          securityContext:
+            privileged: true
       containers:
         - name: sonarqube-blue
           image: sonarqube:7.9.1-community
+          ports:
+            - name: sonarqube
+              containerPort: 9000
+              protocol: TCP
           env:
             - name: SONARQUBE_JDBC_PASSWORD
               valueFrom:
@@ -25,19 +36,12 @@ spec:
                   key: password
             - name: SONARQUBE_JDBC_URL
               value: jdbc:postgresql://postgres-blue:5432/sonar
-          ports:
-            - name: sonarqube-ui
-              containerPort: 9000
           resources:
-            requests:
-              memory: 2000Mi
             limits:
               memory: 2000Mi
-      initContainers:
-        - name: sysctl
-          image: busybox
-          imagePullPolicy: IfNotPresent
-          command: ['sysctl', '-w', 'vm.max_map_count=262144']
-          securityContext:
-            privileged: true
-
+            requests:
+              memory: 2000Mi
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      schedulerName: default-scheduler

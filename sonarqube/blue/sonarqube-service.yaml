@@ -8,11 +8,12 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - name: sonarqube-ui
+    - name: sonarport
+      protocol: TCP
       port: 9000
       targetPort: 9000
-      nodePort: 30004
-      protocol: TCP
+      nodePort: 31000
   selector:
     name: sonarqube-blue
-
+status:
+  loadBalancer: {}
