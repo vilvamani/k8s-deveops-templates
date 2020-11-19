@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: influxdb-blue
+  labels:
+    app: influxdb-blue
+    task: monitoring
+spec:
+  replicas: 1
+  serviceName: influxdb-blue
+  selector:
+    matchLabels:
+      app: influxdb-blue
+  template:
+    metadata:
+      labels:
+        app: influxdb-blue
+        task: monitoring
+    spec:
+      containers:
+        - name: influxdb-blue
+          image: influxdb:1.7.9-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: api
+              containerPort: 8086
+              protocol: TCP
+            - name: rpc
+              containerPort: 8088
+              protocol: TCP
+          volumeMounts:
+            - name: influxdb-data
+              mountPath: /var/lib/influxdb
+            - name: config
+              mountPath: /etc/influxdb
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: api
+              scheme: HTTP
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: api
+              scheme: HTTP
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3  
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: influxdb
+      serviceAccount: influxdb
+      schedulerName: default-scheduler
+      volumes:
+        - name: config
+          configMap:
+            name: influxdb
+            defaultMode: 420
+        - name: influxdb-data
+          persistentVolumeClaim:
+            claimName: influxdb-blue-pvc
+
