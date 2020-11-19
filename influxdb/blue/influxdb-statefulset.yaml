@@ -4,9 +4,7 @@ kind: StatefulSet
 metadata:
   name: influxdb-blue
   labels:
-    name: influxdb
     app: influxdb-blue
-    task: monitoring
 spec:
   replicas: 1
   serviceName: influxdb-blue
@@ -17,7 +15,6 @@ spec:
     metadata:
       labels:
         app: influxdb-blue
-        task: monitoring
     spec:
       containers:
         - name: influxdb-blue

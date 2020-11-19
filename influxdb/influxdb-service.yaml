@@ -17,6 +17,6 @@ spec:
       targetPort: 8088
       protocol: TCP
   selector:
-    name: influxdb-blue
+    app: influxdb-blue
 status:
   loadBalancer: {}
