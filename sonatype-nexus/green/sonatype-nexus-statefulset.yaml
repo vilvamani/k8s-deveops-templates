@@ -19,18 +19,27 @@ spec:
         group: service
     spec:
       containers:
-        - image: sonatype/nexus3:3.28.1
-          name: sonatype-nexus
+        - name: sonatype-nexus
+          image: sonatype/nexus3:3.28.1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MAX_HEAP
+              value: "800m"
+            - name: MIN_HEAP
+              value: "300m"
           ports:
             - name: sonatype
               containerPort: 8081
               protocol: TCP
             - containerPort: 8123
               protocol: TCP
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "4Gi"
+              cpu: "1000m"
+            requests:
+              memory: "2Gi"
+              cpu: "500m"
           volumeMounts:
             - name: nexus-storage
               mountPath: /nexus-data
