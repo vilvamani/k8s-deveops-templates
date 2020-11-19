@@ -29,6 +29,8 @@ spec:
               containerPort: 9000
               protocol: TCP
           env:
+            - name: SONARQUBE_JDBC_USERNAME
+              value: sonar
             - name: SONARQUBE_JDBC_PASSWORD
               valueFrom:
                 secretKeyRef:
