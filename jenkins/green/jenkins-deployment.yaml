@@ -6,15 +6,10 @@ metadata:
   labels:
     app: jenkins-green
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: jenkins-green
-  replicas: 1
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 2
-      maxUnavailable: 0
   template:
     metadata:
       labels:
@@ -22,20 +17,21 @@ spec:
     spec:
       serviceAccountName: jenkins-sa
       containers:
-      - name: jenkins-green
-        image: vilvamani007/jenkins:2.249.3-lts-alpine
-        imagePullPolicy: IfNotPresent
-        env:
-        - name: JAVA_OPTS
-          value: -Xmx2048m -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85
-        ports:
-        - containerPort: 8080
-          protocol: TCP
-        - containerPort: 50000
-          protocol: TCP
-        volumeMounts:
-        - mountPath: /var/jenkins_home
-          name: jenkins
+        - name: jenkins-green
+          image: vilvamani007/jenkins:2.235.5-lts-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 50000
+              protocol: TCP
+          env:
+          - name: JAVA_OPTS
+            value: -Xmx2048m -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85
+          resources: {}
+          volumeMounts:
+          - name: jenkins
+            mountPath: /var/jenkins_home
       restartPolicy: Always
       securityContext:
         runAsUser: 0
@@ -44,4 +40,9 @@ spec:
       - name: jenkins
         persistentVolumeClaim:
           claimName: jenkins-green-pvc
-
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1

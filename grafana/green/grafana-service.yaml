@@ -8,8 +8,9 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 3000
-    nodePort: 30014
-    protocol: TCP
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30015
   selector:
     app: grafana-green
