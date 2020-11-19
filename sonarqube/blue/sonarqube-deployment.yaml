@@ -23,7 +23,7 @@ spec:
             privileged: true
       containers:
         - name: sonarqube-blue
-          image: sonarqube:7.9.1-community
+          image: sonarqube:8.5.1-community
           ports:
             - name: sonarqube
               containerPort: 9000
@@ -41,7 +41,19 @@ spec:
               memory: 2000Mi
             requests:
               memory: 2000Mi
+          volumeMounts:
+            - name: sonarqube-extensions
+              mountPath: /opt/sonarqube/extensions
+            - name: sonarqube-data
+              mountPath: /opt/sonarqube/data
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       securityContext: {}
       schedulerName: default-scheduler
+      volumes:
+        - name: sonarqube-extensions
+          persistentVolumeClaim:
+            claimName: sonarqube-extensions-blue-pvc
+        - name: sonarqube-data
+          persistentVolumeClaim:
+            claimName: sonarqube-data-blue-pvc
