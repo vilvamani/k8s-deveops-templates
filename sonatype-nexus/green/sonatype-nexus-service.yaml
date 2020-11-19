@@ -18,3 +18,5 @@ spec:
     app: sonatype-nexus-green
     group: service
     statefulset.kubernetes.io/pod-name: sonatype-nexus-green-0
+status:
+  loadBalancer: {}
