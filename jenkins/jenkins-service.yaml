@@ -9,13 +9,15 @@ spec:
   type: NodePort
   ports:
     - name: ui
+      protocol: TCP
       port: 8080
       targetPort: 8080
       nodePort: 30000
-      protocol: TCP
     - name: slave
-      port: 50000
       protocol: TCP
+      port: 50000
+      targetPort: 50000
   selector:
     app: jenkins-blue
-
+status:
+  loadBalancer: {}
