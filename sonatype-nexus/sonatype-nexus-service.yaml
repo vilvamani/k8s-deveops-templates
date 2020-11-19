@@ -2,7 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sonatype-nexus
+  name: sonatype-nexus-service
+  labels:
+    name: sonatype-nexus-service
 spec:
   type: NodePort
   ports:

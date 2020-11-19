@@ -5,7 +5,6 @@ metadata:
   name: influxdb-blue
   labels:
     app: influxdb-blue
-    task: monitoring
 spec:
   ports:
     - name: api

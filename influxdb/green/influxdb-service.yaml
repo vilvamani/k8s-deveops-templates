@@ -5,7 +5,6 @@ metadata:
   name: influxdb-green
   labels:
     app: influxdb-green
-    task: monitoring
 spec:
   ports:
     - name: api

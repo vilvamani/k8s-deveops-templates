@@ -3,6 +3,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: sonatype-nexus-blue
+  labels:
+    name: sonatype-nexus-blue
 spec:
   type: NodePort
   ports:
