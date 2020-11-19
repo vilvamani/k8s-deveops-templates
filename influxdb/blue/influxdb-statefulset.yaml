@@ -57,7 +57,7 @@ spec:
             failureThreshold: 3  
       restartPolicy: Always
       terminationGracePeriodSeconds: 45
-      serviceAccountName: influxdb
+      serviceAccountName: influxdb-blue
       securityContext: {}
       schedulerName: default-scheduler
       volumes:
