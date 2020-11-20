@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: efs-storage-claim
+  name: jenkins-blue-pvc
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: jenkins-blue-pvc
+  storageClassName: efs-sc
   resources:
     requests:
       storage: 5Gi
