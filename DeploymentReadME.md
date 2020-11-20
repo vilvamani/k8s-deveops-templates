@@ -66,3 +66,5 @@ kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templat
 - grafana-cli plugins install grafana-kubernetes-app
 - grafana-cli plugins install grafana-piechart-panel
 - grafana-cli plugins install btplc-trend-box-panel
+
+> Import the grafana dashboard 10557
