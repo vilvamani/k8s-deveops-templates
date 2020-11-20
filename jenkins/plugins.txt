@@ -3,6 +3,7 @@ bitbucket
 bitbucket-build-status-notifier
 bitbucket-push-and-pull-request
 build-monitor-plugin
+build-timeout
 credentials-binding
 declarative-pipeline-migration-assistant
 declarative-pipeline-migration-assistant-api
@@ -35,6 +36,7 @@ kubernetes-cd
 kubernetes-cli
 kubernetes-client-api
 kubernetes-credentials
+kubernetes-credentials-provider
 kubernetes-pipeline-devops-steps
 mailer
 nexus-artifact-uploader
