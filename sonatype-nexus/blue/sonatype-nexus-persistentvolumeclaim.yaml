@@ -4,10 +4,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: sonatype-nexus-blue-pvc
 spec:
-  storageClassName: csi-hostpath-sc
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  storageClassName: efs-sc
   resources:
     requests:
-      storage: 15Gi
-
+      storage: 10Gi

@@ -4,9 +4,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: postgres-blue-pvc
 spec:
-  storageClassName: csi-hostpath-sc
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  storageClassName: efs-sc
   resources:
     requests:
       storage: 5Gi

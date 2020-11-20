@@ -4,11 +4,13 @@ kind: PersistentVolume
 metadata:
   name: postgres-blue-pv
 spec:
-  storageClassName: csi-hostpath-sc
-  persistentVolumeReclaimPolicy: Retain
   capacity:
     storage: 5Gi
+  volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/postgres-blue"
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: efs-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-62ee5f97
