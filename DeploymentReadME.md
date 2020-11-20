@@ -63,9 +63,6 @@ kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templat
 kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templates/main/influxdb/influxdb-configmap.yaml
 ```
 ```
-kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templates/main/influxdb/influxdb-secrets.yaml
-```
-```
 kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templates/main/influxdb/influxdb-serviceaccount.yaml
 ```
 ```
