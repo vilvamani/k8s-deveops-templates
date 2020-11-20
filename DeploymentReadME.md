@@ -1,3 +1,9 @@
+## Create Namespace for DevOps
+
+```
+kubectl create namespace devops
+```
+
 ## Jenkins Deployment
 ```
 kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templates/main/jenkins/jenkins-serviceaccount.yaml
