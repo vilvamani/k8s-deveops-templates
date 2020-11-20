@@ -47,6 +47,10 @@ kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templat
 kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templates/main/influxdb/influxdb-service.yaml -n devops
 ```
 
+> **Note:** Login into Influxdb Conatiner and Create **influxdb** to store jenkins job status
+
+> CREATE DATABASE influxdb
+
 ## Grafana Dashboard Deployment
 ```
 kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templates/main/grafana/grafana-configmap.yaml
@@ -56,3 +60,9 @@ kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templat
 kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templates/main/grafana/blue/grafana-deployment.yaml
 kubectl apply -f https://raw.githubusercontent.com/vilvamani/k8s-deveops-templates/main/grafana/grafana-service.yaml
 ```
+
+> Install plugins in Grafana
+
+- grafana-cli plugins install grafana-kubernetes-app
+- grafana-cli plugins install grafana-piechart-panel
+- grafana-cli plugins install btplc-trend-box-panel
