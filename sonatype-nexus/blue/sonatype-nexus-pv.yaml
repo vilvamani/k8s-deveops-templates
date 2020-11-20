@@ -13,4 +13,4 @@ spec:
   storageClassName: efs-sc
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-62ee5f97:/sonatype-nexus-blue
+    volumeHandle: fs-9e40f16b:/sonatype-nexus-blue
