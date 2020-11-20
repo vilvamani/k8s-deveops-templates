@@ -4,22 +4,21 @@ kind: PersistentVolumeClaim
 metadata:
   name: sonarqube-extensions-blue-pvc
 spec:
-  storageClassName: csi-hostpath-sc
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  storageClassName: efs-sc
   resources:
     requests:
       storage: 5Gi
-
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: sonarqube-data-blue-pvc
 spec:
-  storageClassName: csi-hostpath-sc
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  storageClassName: efs-sc
   resources:
     requests:
       storage: 5Gi
