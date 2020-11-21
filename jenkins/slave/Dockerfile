@@ -24,6 +24,7 @@ RUN apt-get update && \
     apt-get install docker.io -y && \
     apt-get update
 
+RUN apt-get -y install python3-pip
 RUN usermod -a -G docker jenkins
 RUN su -c "id" jenkins
 
