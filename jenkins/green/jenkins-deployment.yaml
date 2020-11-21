@@ -15,7 +15,6 @@ spec:
       labels:
         app: jenkins-green
     spec:
-      serviceAccountName: jenkins-sa
       containers:
         - name: jenkins-green
           image: vilvamani007/jenkins:2.235.5-lts-alpine

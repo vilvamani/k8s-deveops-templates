@@ -4,14 +4,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: jenkins-green-pvc
 spec:
-  storageClassName: csi-hostpath-sc
-  dataSource:
-    name: jenkins-blue-pvc
-    kind: PersistentVolumeClaim
-    apiGroup: ""
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  storageClassName: efs-sc
   resources:
     requests:
-      storage: 10Gi
-
+      storage: 5Gi

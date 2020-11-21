@@ -21,9 +21,11 @@ RUN apt-get update && \
     "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
     $(lsb_release -cs) \
     stable" && \
-    apt-get update && \
-    apt-get -y install docker-ce
+    apt-get install docker.io -y && \
+    apt-get update
+
 RUN usermod -a -G docker jenkins
+RUN su -c "id" jenkins
 
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
@@ -33,4 +35,3 @@ RUN apt-get install -y kubectl
 USER ${user}
 
 ENTRYPOINT ["jenkins-agent"]
-
