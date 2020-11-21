@@ -13,4 +13,4 @@ spec:
   storageClassName: efs-sc
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-3049fac5:/postgres-blue
+    volumeHandle: fs-92e85a67:/postgres-blue

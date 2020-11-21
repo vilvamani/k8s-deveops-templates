@@ -13,7 +13,7 @@ spec:
   storageClassName: efs-sc
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-3049fac5:/sonarqube-extensions-blue
+    volumeHandle: fs-92e85a67:/sonarqube-extensions-blue
 
 ---
 apiVersion: v1
@@ -30,5 +30,5 @@ spec:
   storageClassName: efs-sc
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-3049fac5:/sonarqube-data-blue
+    volumeHandle: fs-92e85a67:/sonarqube-data-blue
     
