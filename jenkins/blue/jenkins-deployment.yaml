@@ -27,13 +27,7 @@ spec:
           env:
           - name: JAVA_OPTS
             value: -Xmx2048m -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85
-          resources:
-            limits:
-              memory: "2Gi"
-              cpu: "2000m"
-            requests:
-              memory: "1Gi"
-              cpu: "1000m"
+          resources: {}
           volumeMounts:
           - name: jenkins
             mountPath: /var/jenkins_home
