@@ -38,11 +38,7 @@ spec:
                   key: password
             - name: SONARQUBE_JDBC_URL
               value: jdbc:postgresql://postgres-blue:5432/sonar
-          resources:
-            limits:
-              memory: 2000Mi
-            requests:
-              memory: 2000Mi
+          resources: {}
           volumeMounts:
             - name: sonarqube-extensions
               mountPath: /opt/sonarqube/extensions
