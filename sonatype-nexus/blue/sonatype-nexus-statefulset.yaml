@@ -33,13 +33,7 @@ spec:
               protocol: TCP
             - containerPort: 8123
               protocol: TCP
-          resources:
-            limits:
-              memory: "2Gi"
-              cpu: "2000m"
-            requests:
-              memory: "1Gi"
-              cpu: "1000m"
+          resources: {}
           volumeMounts:
             - name: nexus-storage
               mountPath: /nexus-data
