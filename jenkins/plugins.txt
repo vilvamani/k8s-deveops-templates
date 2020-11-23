@@ -3,6 +3,7 @@ bitbucket
 bitbucket-build-status-notifier
 bitbucket-push-and-pull-request
 build-monitor-plugin
+build-notifications
 build-timeout
 credentials-binding
 declarative-pipeline-migration-assistant
@@ -24,6 +25,7 @@ github
 github-autostatus
 github-branch-source
 github-pullrequest
+global-slack-notifier
 groovy-postbuild
 htmlpublisher
 influxdb
