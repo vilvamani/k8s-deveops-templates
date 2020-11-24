@@ -18,6 +18,7 @@ RUN apt-get update && \
     apt-get -y install apt-transport-https \
     npm \
     git \
+    jq \
     ca-certificates \
     curl \
     gnupg2 \
@@ -29,6 +30,8 @@ RUN apt-get update && \
     stable" && \
     apt-get install docker.io -y && \
     apt-get update
+
+RUN wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh && chmod -R 777 nodesource_setup.sh
 RUN bash nodesource_setup.sh

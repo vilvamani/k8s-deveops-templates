@@ -12,6 +12,7 @@ RUN apt-get update && \
     apt-get -y install apt-transport-https \
     maven \
     git \
+    jq \
     ca-certificates \
     curl \
     gnupg2 \
@@ -23,6 +24,8 @@ RUN apt-get update && \
     stable" && \
     apt-get install docker.io -y && \
     apt-get update
+
+RUN wget https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 -O /usr/bin/yq && chmod +x /usr/bin/yq
 
 RUN apt-get -y install python3-pip
 RUN usermod -a -G docker jenkins
