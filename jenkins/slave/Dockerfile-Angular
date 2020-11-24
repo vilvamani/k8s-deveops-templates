@@ -1,0 +1,48 @@
+# Start with a base image
+FROM jenkins/inbound-agent
+
+# Add Maintainer Info
+LABEL maintainer "vilvamani007@gmail.com"
+
+ARG user=jenkins
+
+USER root
+
+#RUN add-apt-repository ppa:canonical-chromium-builds/stage
+RUN apt-get update
+RUN apt-get install -y libappindicator1 fonts-liberation build-essential libssl-dev
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+
+RUN apt-get update && \
+    apt-get -y install apt-transport-https \
+    npm \
+    git \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
+    add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+    $(lsb_release -cs) \
+    stable" && \
+    apt-get install docker.io -y && \
+    apt-get update
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh && chmod -R 777 nodesource_setup.sh
+RUN bash nodesource_setup.sh
+RUN apt-get install nodejs -y
+
+#RUN npm install -g @angular/cli@1.6.5
+RUN usermod -a -G docker jenkins
+RUN su -c "id" jenkins
+
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+RUN echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
+RUN apt-get update
+RUN apt-get install -y kubectl
+
+USER ${user}
+
+ENTRYPOINT ["jenkins-agent"]
