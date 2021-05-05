@@ -1,7 +1,7 @@
+ARG VERSION
+
 # Start with a base image
 FROM jenkins/jenkins:$VERSION-lts-alpine
-
-ARG VERSION
 
 # Add Maintainer Info
 LABEL maintainer="Vilvamani Arumugam"
