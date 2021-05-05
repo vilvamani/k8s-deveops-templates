@@ -1,12 +1,13 @@
 # Start with a base image
-FROM jenkins/jenkins:2.249.3-lts-alpine
+FROM jenkins/jenkins:$VERSION-lts-alpine
+
+ARG VERSION
 
 # Add Maintainer Info
-LABEL maintainer "vilvamani007@gmail.com"
+LABEL maintainer="Vilvamani Arumugam"
 
-COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+COPY plugins.txt /usr/share/jenkins/plugins.txt
 RUN xargs /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 USER jenkins
-
