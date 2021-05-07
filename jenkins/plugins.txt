@@ -1,5 +1,4 @@
 # Required dependencies for our builds
-
 ansicolor:0.7.5
 blueocean:1.24.6
 clover:4.12.0
@@ -30,7 +29,6 @@ ws-cleanup:0.39
 
 # Transitive dependencies of the above pinned at a particular version
 # WARNING!!!: Failure to pin a transitive dependency will result in non-repeatable builds of the Jenkins image.
-
 ace-editor:1.1
 analysis-core:1.96
 analysis-model-api:10.2.5
@@ -108,6 +106,7 @@ pipeline-stage-tags-metadata:1.8.4
 plain-credentials:1.7
 pubsub-light:1.14
 run-condition:1.5
+rebuild:1.32
 scm-api:2.6.4
 script-security:1.76
 sse-gateway:1.24
