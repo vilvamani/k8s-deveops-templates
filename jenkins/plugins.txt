@@ -3,6 +3,7 @@ ansicolor:0.7.5
 blueocean:1.24.6
 clover:4.12.0
 command-launcher:1.5
+config-file-provider:3.8.0
 configuration-as-code:1.50
 configuration-as-code-support:1.18
 credentials:2.3.18
