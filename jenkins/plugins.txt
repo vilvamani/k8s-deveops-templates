@@ -110,6 +110,7 @@ pipeline-rest-api:2.19
 pipeline-stage-step:2.5
 pipeline-stage-tags-metadata:1.8.4
 plain-credentials:1.7
+postbuild-task:1.9
 pubsub-light:1.14
 run-condition:1.5
 rebuild:1.32
