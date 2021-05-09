@@ -75,7 +75,6 @@ git-server:1.9
 github-api:1.123
 github-branch-source:2.10.4
 github:1.33.1
-global-slack-notifier:1.5
 handlebars:3.0.8
 handy-uri-templates-2-api:2.1.8-1.0
 htmlpublisher:1.25
