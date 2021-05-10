@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: jenkins-green
-          image: vilvamani007/jenkins:2.249.3-lts-alpine
+          image: vilvamani007/jenkins:2.277.4-alpine
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
